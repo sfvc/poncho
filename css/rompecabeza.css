@@ -7,7 +7,7 @@
 .actions {
   margin-top: 1em;
   margin-bottom: 1em;
-  text-align: center;
+
 }
 
 .puzzle {
@@ -41,13 +41,12 @@
 }
 
 @media (max-width: 768px) {
+  .puzzle {
+    height: auto; /* Permitimos que la altura del rompecabezas sea automática */
+  }
   .elem {
     position: relative; /* Cambiamos a posición relativa para que se apilen debajo */
     margin-bottom: 10px; /* Agregamos un margen inferior para separar las piezas */
-  }
-
-  .puzzle {
-    height: auto; /* Permitimos que la altura del rompecabezas sea automática */
   }
 }
 

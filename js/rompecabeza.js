@@ -3,11 +3,23 @@ const puzzleConfig = {
     pieceCount: { x: 3, y: 2 }
 };
 
+const difficulties = [
+    { x: 3, y: 2, name: "Fácil" },
+    { x: 5, y: 4, name: "Intermedio" },
+    { x: 7, y: 6, name: "Difícil" }
+];
+
+let currentDifficulty = 0;
+
 const state = {
     pieces: [],
     dragStartPosition: { x: 0, y: 0 },
     draggedPiece: null,
     image: ''
+};
+
+const updateDifficultyLevel = () => {
+    document.getElementById('difficultyLevel').innerText = `${difficulties[currentDifficulty].name}`;
 };
 
 const stopDrag = () => {
@@ -27,14 +39,17 @@ const stopDrag = () => {
     state.draggedPiece = null;
     document.onmouseup = null;
     document.onmousemove = null;
+    document.ontouchend = null;
+    document.ontouchmove = null;
 };
 
 const drag = (event) => {
     event.preventDefault();
-    const diffX = state.dragStartPosition.x - event.clientX;
-    const diffY = state.dragStartPosition.y - event.clientY;
-    state.dragStartPosition.x = event.clientX;
-    state.dragStartPosition.y = event.clientY;
+    const touch = event.touches ? event.touches[0] : event;
+    const diffX = state.dragStartPosition.x - touch.clientX;
+    const diffY = state.dragStartPosition.y - touch.clientY;
+    state.dragStartPosition.x = touch.clientX;
+    state.dragStartPosition.y = touch.clientY;
     state.draggedPiece.elem.style.top = state.draggedPiece.elem.offsetTop - diffY + 'px';
     state.draggedPiece.elem.style.left = state.draggedPiece.elem.offsetLeft - diffX + 'px';
 };
@@ -42,10 +57,13 @@ const drag = (event) => {
 const startDrag = (piece, event) => {
     state.draggedPiece = piece;
     event.preventDefault();
-    state.dragStartPosition.x = event.clientX;
-    state.dragStartPosition.y = event.clientY;
+    const touch = event.touches ? event.touches[0] : event;
+    state.dragStartPosition.x = touch.clientX;
+    state.dragStartPosition.y = touch.clientY;
     document.onmouseup = stopDrag;
     document.onmousemove = drag;
+    document.ontouchend = stopDrag;
+    document.ontouchmove = drag;
 };
 
 const createPuzzlePieces = () =>
@@ -88,11 +106,29 @@ const initBoard = () => {
     pieces.sort(() => Math.random() > 0.5);
     pieces.forEach((piece) => {
         const p = piece;
-        piece.elem.style.left = puzzleConfig.size.width + puzzleConfig.size.width * Math.random() + 'px';
-        piece.elem.style.top = puzzleConfig.size.height * Math.random() + 'px';
+        if (window.innerWidth <= 768) {
+            piece.elem.style.position = 'relative'; // Cambiamos a posición relativa para que se apilen debajo
+            piece.elem.style.left = '0px';
+            piece.elem.style.top = '0px';
+        } else {
+            piece.elem.style.position = 'absolute'; // Aseguramos que la posición sea absoluta en pantallas grandes
+            piece.elem.style.left = puzzleConfig.size.width + puzzleConfig.size.width * Math.random() + 'px';
+            piece.elem.style.top = puzzleConfig.size.height * Math.random() + 'px';
+        }
         piece.elem.onmousedown = (event) => startDrag(p, event);
+        piece.elem.ontouchstart = (event) => startDrag(p, event);
     });
     state.pieces = pieces;
+    updateDifficultyLevel();
+};
+
+const increaseDifficulty = () => {
+    currentDifficulty = (currentDifficulty + 1) % difficulties.length;
+    puzzleConfig.pieceCount = difficulties[currentDifficulty];
+    state.pieces.forEach((piece) => {
+        piece.elem.remove();
+    });
+    initBoard();
 };
 
 initBoard();
@@ -103,3 +139,5 @@ document.querySelector('#newGame').onclick = () => {
     });
     initBoard();
 };
+
+document.querySelector('#increaseDifficulty').onclick = increaseDifficulty;

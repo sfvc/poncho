@@ -29,3 +29,38 @@
         background-position: 200% center;
     }
 }
+
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #001C2B;
+    padding: 10px 20px;
+  }
+  
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .inicio {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #0c65e9;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .inicio:hover {
+    background-color: #e65c55;
+    transform: scale(1.1);
+  }
+  
+  .navbar h1 {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+  }
+  

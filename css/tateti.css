@@ -1,49 +1,50 @@
 body {
-    background-color: rgb(32, 32, 32);
-    background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg");
-    color: rgb(230, 230, 230);
+    margin: 0;
+    padding: 0;
+    background-color: #f3e0b5; /* Fondo beige claro */
+    background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg"); /* Opcional, puedes quitarlo */
+    color: #8b4513; /* Marrón oscuro para el texto */
     text-align: center;
-    font-size: 0.7em;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1em;
 }
+
 h1 {
     line-height: 1em;
     margin-bottom: 0;
     padding-bottom: 5px;
     font-size: 2.8em;
     font-weight: bold;
+    color: #8b4513; /* Marrón oscuro */
 }
-h2 {
-    font-size: 1.3em;
-    font-weight: bold;
-    padding: 0;
-    margin: 0;
 
+h2, h3 {
+    color: #8b4513; /* Marrón oscuro */
 }
-h3 {
-    font-size: 1.1em;
-    text-decoration: underline;
 
-    padding: 0;
-    margin: 10px 0 2px 0;
-}
 table {
     margin: 2% auto;
     border-collapse: collapse;
 }
+
 #table_game {
     position: relative;
     font-size: 120px;
     margin: 1% auto;
     border-collapse: collapse;
+    background-color: #f9dcb2; /* Fondo beige más claro para la tabla */
+    border: 4px solid #8b4513; /* Borde marrón oscuro */
 }
+
 .td_game {
-    border: 4px solid rgb(230, 230, 230);
+    border: 4px solid #8b4513; /* Borde marrón oscuro */
     width: 90px;
     height: 90px;
     padding: 0;
     vertical-align: middle;
     text-align: center;
 }
+
 .fixed {
     width: 90px;
     height: 90px;
@@ -51,18 +52,24 @@ table {
     display: block;
     overflow: hidden;
     cursor: pointer;
+    background-color: #f3e0b5; /* Fondo beige claro */
 }
+
 .td_list {
     text-align: center;
     font-size: 1.3em;
     font-weight: bold;
+    color: #8b4513; /* Marrón oscuro */
 }
+
 .th_list {
     font-size: 1.3em;
     font-weight: bold;
     text-align: center;
     text-decoration: underline;
+    color: #8b4513; /* Marrón oscuro */
 }
+
 #restart {
     font-size: 3em;
     width: 1em;
@@ -70,16 +77,19 @@ table {
     cursor: pointer;
     margin: 1rem auto;
     overflow: hidden;
+    color: #8b4513; /* Marrón oscuro */
 }
+
 .x {
-    color: darksalmon;
+    color: rgb(255, 0, 0);
     position: relative;
     top: -8px;
     font-size: 1.2em;
     cursor: default;
 }
+
 .o {
-    color: aquamarine;
+    color: rgb(0, 4, 255);
     position: relative;
     top: -7px;
     font-size: 1.0em;
@@ -146,14 +156,14 @@ table {
     align-items: center;
     background-color: #001C2B;
     padding: 10px 20px;
-  }
-  
-  a {
+}
+
+a {
     color: white;
     text-decoration: none;
-  }
-  
-  .inicio {
+}
+
+.inicio {
     color: white;
     text-decoration: none;
     font-size: 18px;
@@ -161,20 +171,20 @@ table {
     border-radius: 5px;
     background-color: #0c65e9;
     transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .inicio:hover {
+}
+
+.inicio:hover {
     background-color: #e65c55;
     transform: scale(1.1);
-  }
-  
-  .navbar h1 {
+}
+
+.navbar h1 {
     color: white;
     font-size: 24px;
     margin: 0;
-  }
+}
 
-  button#okBtn {
+button#okBtn {
     margin-top: 1em;
     background-color: #4CAF50; /* Color de fondo */
     color: white; /* Color del texto */
@@ -184,8 +194,8 @@ table {
     border-radius: 5px; /* Bordes redondeados */
     font-size: 16px; /* Tamaño de fuente */
     transition: background-color 0.3s ease; /* Transición al hacer hover */
-  }
-  
-  button#okBtn:hover {
+}
+
+button#okBtn:hover {
     background-color: #45a049; /* Color de fondo al hacer hover */
-  }
+}
