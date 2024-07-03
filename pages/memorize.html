@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorize it</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="./image/png" href="../images/sfvcFavicon.webp">
+    <meta name="description" content="">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
+    <link rel="stylesheet" href="../css/memorize.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="../index.html" class="inicio"><i class="fa fa-home"></i> Inicio</a>
+        <a href="https://sfvc.travel" target="_blank">
+            <img src="../images/logo-sfvc-travel-1.webp" style="width: 13rem;" alt="Logo de Catamarca Capital">
+        </a>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Memorize it!</h1>
+        </header>
+        <div class="score-panel border">
+            <ul class="stars">
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+            </ul>
+            <span class="moves">0 Movimientos</span>
+            <span class="timer">00:00</span>
+            <div class="restart">
+                <i class="fa fa-repeat"></i>
+            </div>
+        </div>
+        <ul class="deck"></ul>
+    </div>
+    <!-- win modal -->
+    <div class="overlay">
+        <div class="popup">
+            <h2 class="popupMsg">Perfecto</h2>
+            <hr>
+            <div class="stats">
+                <h4><span class="final_moves">0</span> Movimientos</h4>
+                <div class="symbols">
+                    <div class="final_stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="prize">
+                        <i class="fa fa-3x fa-trophy"></i>
+                    </div>
+                </div>
+                <h4><span class="final_timer">00:00</span></h4>
+            </div>
+            <hr>
+            <div class="buttons">
+                <a class="btn replay" href="#"><i class="fa fa-repeat"></i>Reiniciar</a>
+            </div>
+        </div>
+    </div>
+    <script src="../js/memorize.js"></script>
+</body>
+
+</html>

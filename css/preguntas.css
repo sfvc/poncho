@@ -1,0 +1,137 @@
+* {
+    transition: all 0.3s;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: cadetblue;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: calibri;
+    font-size: 120%;
+}
+
+.contenedor {
+    width: 98vw;
+    height: 97vh;
+    display: flex; /* Cambiado a flex en lugar de inline-flex */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.encabezado {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px; /* Aumentado para mejor espacio */
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    font-size: 1.4em; /* Ajustado para mejor legibilidad */
+}
+
+.categoria {
+    opacity: 0.7; /* Mayor visibilidad */
+    text-align: left;
+    font-size: 1.2em; /* Ajustado para mejor legibilidad */
+}
+
+.pregunta {
+    padding: 10px;
+    text-align: left; /* Alineación del texto */
+    font-size: 1.3em; /* Ajustado para mejor legibilidad */
+}
+
+.btn {
+    background: white;
+    width: 95%;
+    max-width: 400px; /* Aumentado para mejor visibilidad */
+    padding: 20px; /* Aumentado para mejor espacio */
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px; /* Más redondeado */
+    border: 2px solid transparent; /* Borde transparente */
+    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease; /* Transiciones */
+    font-size: 1.3em; /* Ajustado para mejor legibilidad */
+}
+
+.btn:hover {
+    background-color: #f0f0f0; /* Cambio de color al hacer hover */
+    transform: scale(1.05); /* Efecto de escala */
+    border-color: #ccc; /* Cambio de color del borde */
+}
+
+.numero {
+    opacity: 0.7; /* Mayor visibilidad */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.puntaje {
+    padding: 10px;
+    color: white;
+    font-size: 1.3em; /* Ajustado para mejor legibilidad */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #001C2B;
+    padding: 10px 20px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.inicio {
+    color: white;
+    text-decoration: none;
+    font-size: 20px; /* Aumentado para mejor visibilidad */
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #0c65e9;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.inicio:hover {
+    background-color: #e65c55;
+    transform: scale(1.1);
+}
+
+.navbar h1 {
+    color: white;
+    font-size: 26px; /* Aumentado para mejor visibilidad */
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .encabezado {
+        width: 100%;
+        padding: 20px; /* Más espacio para mejor legibilidad */
+    }
+
+    .btn {
+        width: 90%;
+        padding: 20px; /* Aumentado para mejor espacio */
+    }
+
+    .pregunta {
+        font-size: 1.4em; /* Más grande para móviles */
+    }
+
+    .categoria {
+        font-size: 1.3em; /* Más grande para móviles */
+    }
+
+    .puntaje {
+        font-size: 1.4em; /* Más grande para móviles */
+    }
+}

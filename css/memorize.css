@@ -1,0 +1,353 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff url('../images/geometry-night.png');
+  /* Background pattern from Subtle Patterns */
+  font: 1.1rem 'Nunito Sans', cursive;
+  color: #fff;
+}
+
+/* common classes*/
+.disabled {
+  pointer-events: none;
+}
+
+.border {
+  border: 2px solid #555;
+}
+
+.fa-heart {
+  color: #ff3d3d;
+}
+
+/* common end */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+/*
+  * Styles for the deck of cards
+  */
+
+.deck {
+  align-items: center;
+  background: radial-gradient(#e9aa22, #9302cc);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 660px;
+  padding: 14px;
+  transition: height 0.3s, width 0.2s;
+  width: 660px;
+}
+
+.deck .card {
+  align-items: center;
+  background-color: #23323d;
+  border-radius: 8px;
+  box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 0;
+  height: 135px;
+  justify-content: center;
+  margin: 8px;
+  transform: rotateY(180deg);
+  transition: transform 0.4s ease;
+  width: 135px;
+}
+
+.deck .card.open {
+  transform: rotateY(0);
+  background-color: #6f16b1;
+  cursor: default;
+}
+
+.deck .card.show {
+  font-size: 33px;
+}
+
+.deck .card.match {
+  background-color: #4b7bda;
+  cursor: default;
+  font-size: 33px;
+  animation: jello 1s ease both;
+}
+
+.card.open.wrong {
+  background-color: #ee551d;
+  animation: wobble 0.5s ease;
+  transform-origin: bottom;
+}
+
+/*
+  * Styles for the Score Panel
+  */
+
+.score-panel {
+  text-align: left;
+  min-width: 300px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+.score-panel .stars {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+  list-style: none;
+  display: inline-block;
+}
+
+.score-panel .restart {
+  float: right;
+  cursor: pointer;
+}
+
+/* Custom Animations */
+
+@keyframes wobble {
+
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: translateX(-5px) rotate(-10deg);
+  }
+
+  75% {
+    transform: translateX(5px) rotate(10deg);
+  }
+}
+
+@keyframes jello {
+
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+
+  29%,
+  49% {
+    transform: scale(1.3, 1);
+  }
+
+  35% {
+    transform: scale(1, 1.05);
+  }
+
+  50%,
+  70% {
+    transform: scale(1.1, 1);
+  }
+
+  60% {
+    transform: scale(1, 1);
+  }
+}
+
+/*developer info*/
+
+.developer_info {
+  padding: 0.6em;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.developer_info a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*popup*/
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  transition: opacity 0.5s ease;
+  width: 100%;
+  z-index: -1;
+}
+
+.popup {
+  background: linear-gradient(#bb0303, #650707);
+  border-radius: 10px;
+  border: 2px solid rgb(165, 161, 161);
+  left: 50%;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 340px;
+}
+
+.overlay.show {
+  z-index: 2;
+  opacity: 1;
+  animation: jello 0.8s both;
+}
+
+.popup h2 {
+  margin-top: 0;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.stats>div,
+.stats>h4 {
+  flex-basis: 33.333%;
+}
+
+.final-stars {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.final-stars li {
+  padding: 0 3px;
+  list-style-type: none;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.3s;
+  margin-top: 8px
+}
+
+.btn:hover {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn i {
+  padding-right: 10px;
+}
+
+.replay {
+  background-color: #0062d6;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ff3d3d;
+}
+
+
+/*=============
+  \  Breakpoint  \
+  ============*/
+
+/* Mobile */
+@media screen and (max-width: 680px) {
+  .deck {
+    min-height: unset;
+    width: 310px;
+    height: 310px;
+    padding: 6px;
+    border-radius: 6px;
+    margin-bottom: 0;
+  }
+
+  .deck .card {
+    height: calc(100% / 5);
+    width: calc(100% / 5);
+    margin: 6px;
+    border-radius: inherit;
+  }
+
+  .deck .card.show {
+    font-size: 24px;
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #001C2B;
+  padding: 10px 20px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.inicio {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #0c65e9;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.inicio:hover {
+  background-color: #e65c55;
+  transform: scale(1.1);
+}
+
+.navbar h1 {
+  color: white;
+  font-size: 24px;
+  margin: 0;
+}
