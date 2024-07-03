@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f3e0b5; /* Fondo beige claro */
-    background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg"); /* Opcional, puedes quitarlo */
+    /* background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg"); */
     color: #8b4513; /* Marrón oscuro para el texto */
     text-align: center;
     font-family: 'Nunito Sans', sans-serif;
