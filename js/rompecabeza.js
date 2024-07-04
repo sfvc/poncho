@@ -94,7 +94,27 @@ const createPuzzlePieces = () =>
     });
 
 const initBoard = () => {
-    state.image = `url(https://picsum.photos/${puzzleConfig.size.width}/${puzzleConfig.size.height}?random=${Math.random()})`;
+    // Lista de imágenes disponibles en la carpeta ../images/
+    const images = [
+        "ahorcadoLogo.jpeg",
+        "Default_Creame_un_logo_para_el_juego_del_ahorcado.jpeg",
+        "Default_Creame_un_logo_para_el_juego_del_memorize.jpeg",
+        "Designer (17).jpeg",
+        "Designer (18).jpeg",
+        "Dique-El-Jumeal-SFVC-Turismo-Catamarca.jpeg",
+        "geometry-night.png",
+        "La-Alameda-SFVC-Paseo-General-Navarro.jpeg",
+        "La-Gruta-SFVC-virgen-del-valle-Catamarca.jpeg",
+        "logo-sfvc-travel-1.webp",
+        "memorizeLogo.jpeg",
+        "preguntasLogo.jpeg",
+        "sfvcFavicon.webp",
+        "tatetiLogo.jpeg"
+    ];
+
+    const randomIndex = Math.floor(Math.random() * images.length);
+    const randomImage = images[randomIndex];
+    state.image = `url(../images/${randomImage})`;
     document.querySelector('.puzzleBackground').style.backgroundImage = state.image;
 
     const puzzle = document.querySelector('.puzzle');
