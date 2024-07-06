@@ -17,7 +17,7 @@ body {
 .contenedor {
     width: 98vw;
     height: 97vh;
-    display: flex; /* Cambiado a flex en lugar de inline-flex */
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -27,46 +27,46 @@ body {
     background: white;
     width: 90%;
     max-width: 600px;
-    padding: 20px; /* Aumentado para mejor espacio */
+    padding: 20px;
     margin: 10px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
-    font-size: 1.4em; /* Ajustado para mejor legibilidad */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 1.4em;
 }
 
 .categoria {
-    opacity: 0.7; /* Mayor visibilidad */
+    opacity: 0.7;
     text-align: left;
-    font-size: 1.2em; /* Ajustado para mejor legibilidad */
+    font-size: 1.2em;
 }
 
 .pregunta {
     padding: 10px;
-    text-align: left; /* Alineación del texto */
-    font-size: 1.3em; /* Ajustado para mejor legibilidad */
+    text-align: left;
+    font-size: 1.3em;
 }
 
 .btn {
     background: white;
     width: 95%;
-    max-width: 400px; /* Aumentado para mejor visibilidad */
-    padding: 20px; /* Aumentado para mejor espacio */
+    max-width: 400px;
+    padding: 20px;
     margin: 10px;
     cursor: pointer;
-    border-radius: 10px; /* Más redondeado */
-    border: 2px solid transparent; /* Borde transparente */
-    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease; /* Transiciones */
-    font-size: 1.3em; /* Ajustado para mejor legibilidad */
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    font-size: 1.3em;
 }
 
 .btn:hover {
-    background-color: #f0f0f0; /* Cambio de color al hacer hover */
-    transform: scale(1.05); /* Efecto de escala */
-    border-color: #ccc; /* Cambio de color del borde */
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+    border-color: #ccc;
 }
 
 .numero {
-    opacity: 0.7; /* Mayor visibilidad */
+    opacity: 0.7;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -75,10 +75,9 @@ body {
 .puntaje {
     padding: 10px;
     color: white;
-    font-size: 1.3em; /* Ajustado para mejor legibilidad */
+    font-size: 1.3em;
 }
 
-/* En tu archivo preguntas.css o en un <style> dentro del <head> del HTML */
 .cartel-premio {
     text-align: center;
     margin-bottom: 2rem;
@@ -111,7 +110,7 @@ a {
 .inicio {
     color: white;
     text-decoration: none;
-    font-size: 20px; /* Aumentado para mejor visibilidad */
+    font-size: 18px;
     padding: 10px 20px;
     border-radius: 5px;
     background-color: #0c65e9;
@@ -119,36 +118,51 @@ a {
 }
 
 .inicio:hover {
-    background-color: #e65c55;
+    background-color: #CA9E67;
+    transform: scale(1.1);
+}
+
+.info {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #CA9E67;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.info:hover {
+    background-color: #0c65e9;
     transform: scale(1.1);
 }
 
 .navbar h1 {
     color: white;
-    font-size: 26px; /* Aumentado para mejor visibilidad */
+    font-size: 24px;
     margin: 0;
 }
 
 @media (max-width: 768px) {
     .encabezado {
         width: 100%;
-        padding: 20px; /* Más espacio para mejor legibilidad */
+        padding: 20px;
     }
 
     .btn {
         width: 90%;
-        padding: 20px; /* Aumentado para mejor espacio */
+        padding: 20px;
     }
 
     .pregunta {
-        font-size: 1.4em; /* Más grande para móviles */
+        font-size: 1.4em;
     }
 
     .categoria {
-        font-size: 1.3em; /* Más grande para móviles */
+        font-size: 1.3em;
     }
 
     .puntaje {
-        font-size: 1.4em; /* Más grande para móviles */
+        font-size: 1.4em;
     }
 }

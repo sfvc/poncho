@@ -1,3 +1,7 @@
+// TODO: funca pero a la vez no el rompe cabezas. Lo mejor va a ser que lo veas en la tele y ahi pruebes. Agustin. Porque supuestmente ya quedo configurado el touch y todo, pero las cards todavia hacen lo que le sale del orto
+
+
+// Acá podes cambiar el tamaño del rompecabezas, y tambien las fichas
 const puzzleConfig = {
     size: { width: 640, height: 480 },
     pieceCount: { x: 3, y: 2 }
@@ -24,7 +28,7 @@ const stopDrag = () => {
         state.draggedPiece.elem.style.pointerEvents = 'none';
         state.draggedPiece.elem.style.zIndex = 0;
 
-        checkCompletion(); // Verificar completitud después de soltar la pieza
+        checkCompletion();
     }
     state.draggedPiece = null;
     document.removeEventListener('mouseup', stopDrag);
@@ -105,19 +109,18 @@ const initBoard = () => {
     pieces.sort(() => Math.random() > 0.5);
     pieces.forEach((piece, index) => {
         const p = piece;
-        // Ajuste de posición y eventos para dispositivos móviles
         if (window.innerWidth <= 768) {
-            piece.elem.style.position = 'relative'; // Cambiamos a posición relativa para que se apilen debajo
+            piece.elem.style.position = 'relative';
             piece.elem.style.left = '0px';
             piece.elem.style.top = '0px';
         } else {
-            piece.elem.style.position = 'absolute'; // Aseguramos que la posición sea absoluta en pantallas grandes
+            piece.elem.style.position = 'absolute';
             piece.elem.style.left = puzzleConfig.size.width + puzzleConfig.size.width * Math.random() + 'px';
             piece.elem.style.top = puzzleConfig.size.height * Math.random() + 'px';
         }
         piece.elem.onmousedown = (event) => startDrag(p, event);
         piece.elem.ontouchstart = (event) => startDrag(p, event);
-        piece.currentPosition.x = index % puzzleConfig.pieceCount.x; // Guardamos la posición inicial de cada pieza
+        piece.currentPosition.x = index % puzzleConfig.pieceCount.x;
         piece.currentPosition.y = Math.floor(index / puzzleConfig.pieceCount.x);
     });
     state.pieces = pieces;
@@ -134,7 +137,6 @@ const checkCompletion = () => {
     });
 
     if (completed) {
-        // Mostrar mensaje de felicitaciones o lo que desees
         alert('¡Felicitaciones! Has completado el rompecabezas.');
     }
 };

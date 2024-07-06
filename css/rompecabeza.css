@@ -74,7 +74,22 @@ a {
 }
 
 .inicio:hover {
-  background-color: #e65c55;
+  background-color: #CA9E67;
+  transform: scale(1.1);
+}
+
+.info {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #CA9E67;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.info:hover {
+  background-color: #0c65e9;
   transform: scale(1.1);
 }
 

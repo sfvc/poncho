@@ -160,7 +160,13 @@ function cardLogic() {
 
   function movesCounter() {
     allMoves++;
+    // Update moves display
     allMoves == 1 ? moves.innerText = `${allMoves} Movimiento` : moves.innerText = `${allMoves} Movimientos`;
+    
+    // Check if move limit reached
+    if (allMoves >= moveLimit) {
+      loseGame("Has superado el límite de movimientos permitidos.");
+    }
     starsCounter(allMoves);
     checkWin();
   }
@@ -184,7 +190,7 @@ function cardLogic() {
     }
 
     switch (allMoves) {
-      case 10:
+      case 11:
         stars.children[2].children[0].classList.remove('fa-star');
         stars.children[2].children[0].classList.add('fa-star-o');
         loosingStar();
@@ -192,7 +198,7 @@ function cardLogic() {
         popupStars.children[2].remove();
         prize.innerHTML = `<i class="fa fa-3x fa-trophy"></i>`;
         break;
-      case 15:
+      case 16:
         stars.children[1].children[0].classList.remove('fa-star');
         stars.children[1].children[0].classList.add('fa-star-o');
         loosingStar();
@@ -200,7 +206,7 @@ function cardLogic() {
         popupStars.children[1].remove();
         prize.innerHTML = `<i class="fa fa-3x fa-trophy"></i>`;
         break;
-      case 20:
+      case 21:
         stars.children[0].children[0].classList.remove('fa-star');
         stars.children[0].children[0].classList.add('fa-star-o');
         loosingStar();
@@ -211,22 +217,44 @@ function cardLogic() {
     }
   }
 
+  // TODO: Hacer que puedas jugar directamente cuando fallas o se acaba el tiempo, Agustin (en verdad esto me quedaba a mi pero pasaron cositas jsjs. No es algo super importante, pero si podes pintarla para que no quede tan choto, mandale cumbia)
+
   // Timer
   const timer = document.querySelector('.timer');
   let minutes = 0;
   let seconds = 0;
-  let timerState = false;
   let timerSettings;
+  let timerState = false;
+  const moveLimit = 21;
+  const timeLimitMinutes = 1;
 
   function timeCounter() {
     timerSettings = setInterval(() => {
       seconds++;
-      if (seconds == 60) {
+      if (seconds == 40) {
         seconds = 0;
         minutes++;
       }
       timer.innerText = timeFormat(seconds, minutes);
+  
+      // Check if time limit reached
+      if (minutes >= timeLimitMinutes) {
+        loseGame("Has alcanzado el límite de tiempo permitido.");
+      }
     }, 1000);
+  }
+
+  function loseGame(message) {
+    stopTimer();
+    // Display losing message or handle game over logic
+    alert(message);
+    // Optionally, reset the game here or prompt user to restart
+  }
+  
+  // Function to stop the timer
+  function stopTimer() {
+    clearInterval(timerSettings);
+    timerState = false;
   }
 
   let timeFormat = (ss, mm) => {
@@ -234,11 +262,6 @@ function cardLogic() {
     mm = minutes < 10 ? `0${minutes}` : minutes;
     return `${mm}:${ss}`;
   };
-
-  function stopTimer() {
-    clearInterval(timerSettings);
-    timerState = false;
-  }
 
   function checkWin() {
     let pairedCards = document.querySelectorAll('.match');
