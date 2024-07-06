@@ -3,23 +3,11 @@ const puzzleConfig = {
     pieceCount: { x: 3, y: 2 }
 };
 
-const difficulties = [
-    { x: 3, y: 2, name: "Fácil" },
-    { x: 5, y: 4, name: "Intermedio" },
-    { x: 7, y: 6, name: "Difícil" }
-];
-
-let currentDifficulty = 0;
-
 const state = {
     pieces: [],
     dragStartPosition: { x: 0, y: 0 },
     draggedPiece: null,
     image: ''
-};
-
-const updateDifficultyLevel = () => {
-    document.getElementById('difficultyLevel').innerText = `${difficulties[currentDifficulty].name}`;
 };
 
 const stopDrag = () => {
@@ -35,12 +23,14 @@ const stopDrag = () => {
         state.draggedPiece.elem.style.top = state.draggedPiece.targetPosition.y + 'px';
         state.draggedPiece.elem.style.pointerEvents = 'none';
         state.draggedPiece.elem.style.zIndex = 0;
+
+        checkCompletion(); // Verificar completitud después de soltar la pieza
     }
     state.draggedPiece = null;
-    document.onmouseup = null;
-    document.onmousemove = null;
-    document.ontouchend = null;
-    document.ontouchmove = null;
+    document.removeEventListener('mouseup', stopDrag);
+    document.removeEventListener('touchend', stopDrag);
+    document.removeEventListener('mousemove', drag);
+    document.removeEventListener('touchmove', drag);
 };
 
 const drag = (event) => {
@@ -60,10 +50,10 @@ const startDrag = (piece, event) => {
     const touch = event.touches ? event.touches[0] : event;
     state.dragStartPosition.x = touch.clientX;
     state.dragStartPosition.y = touch.clientY;
-    document.onmouseup = stopDrag;
-    document.onmousemove = drag;
-    document.ontouchend = stopDrag;
-    document.ontouchmove = drag;
+    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('touchend', stopDrag);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', drag);
 };
 
 const createPuzzlePieces = () =>
@@ -73,28 +63,37 @@ const createPuzzlePieces = () =>
         elem.style.width = puzzleConfig.size.width / puzzleConfig.pieceCount.x + 'px';
         elem.style.height = puzzleConfig.size.height / puzzleConfig.pieceCount.y + 'px';
         elem.style.backgroundImage = state.image;
-        elem.style.backgroundPosition = `-${
-            (index % puzzleConfig.pieceCount.x) * (puzzleConfig.size.width / puzzleConfig.pieceCount.x)
-        }px -${
-            Math.floor(index / puzzleConfig.pieceCount.x) *
+        elem.style.backgroundPosition = `-${(index % puzzleConfig.pieceCount.x) * (puzzleConfig.size.width / puzzleConfig.pieceCount.x)
+            }px -${Math.floor(index / puzzleConfig.pieceCount.x) *
             (puzzleConfig.size.height / puzzleConfig.pieceCount.y)
-        }px`;
+            }px`;
+
+        const row = Math.floor(index / puzzleConfig.pieceCount.x);
+        elem.style.top = puzzleConfig.size.height + row * (puzzleConfig.size.height / puzzleConfig.pieceCount.y) + 'px';
+        elem.style.left = (index % puzzleConfig.pieceCount.x) * (puzzleConfig.size.width / puzzleConfig.pieceCount.x) + 'px';
 
         return {
             elem,
             targetPosition: {
-                x:
-                    (index % puzzleConfig.pieceCount.x) *
-                    (puzzleConfig.size.width / puzzleConfig.pieceCount.x),
-                y:
-                    Math.floor(index / puzzleConfig.pieceCount.x) *
-                    (puzzleConfig.size.height / puzzleConfig.pieceCount.y)
-            }
+                x: (index % puzzleConfig.pieceCount.x) * (puzzleConfig.size.width / puzzleConfig.pieceCount.x),
+                y: row * (puzzleConfig.size.height / puzzleConfig.pieceCount.y)
+            },
+            currentPosition: { x: 0, y: 0 }
         };
     });
 
+const imagenes = [
+    'Dique-El-Jumeal-SFVC-Turismo-Catamarca-14.webp',
+    'La-Alameda-SFVC-Paseo-General-Navarro-Catamarca-LD-8.webp',
+    'La-Gruta-SFVC-virgen-del-valle-Catamarca-6.webp'
+    // Anda agregando acá las nuevas imagenes que te pasen, Agustin. Mandale el nombre y listo, ya queda vinculado todo a la ruta de "rompecabezas"
+];
+
 const initBoard = () => {
-    state.image = `url(https://picsum.photos/${puzzleConfig.size.width}/${puzzleConfig.size.height}?random=${Math.random()})`;
+    const randomIndex = Math.floor(Math.random() * imagenes.length);
+    const imageName = imagenes[randomIndex];
+
+    state.image = `url(../images/rompecabezas/${imageName})`;
     document.querySelector('.puzzleBackground').style.backgroundImage = state.image;
 
     const puzzle = document.querySelector('.puzzle');
@@ -104,8 +103,9 @@ const initBoard = () => {
     const pieces = createPuzzlePieces();
     puzzle.append(...pieces.map((piece) => piece.elem));
     pieces.sort(() => Math.random() > 0.5);
-    pieces.forEach((piece) => {
+    pieces.forEach((piece, index) => {
         const p = piece;
+        // Ajuste de posición y eventos para dispositivos móviles
         if (window.innerWidth <= 768) {
             piece.elem.style.position = 'relative'; // Cambiamos a posición relativa para que se apilen debajo
             piece.elem.style.left = '0px';
@@ -117,18 +117,26 @@ const initBoard = () => {
         }
         piece.elem.onmousedown = (event) => startDrag(p, event);
         piece.elem.ontouchstart = (event) => startDrag(p, event);
+        piece.currentPosition.x = index % puzzleConfig.pieceCount.x; // Guardamos la posición inicial de cada pieza
+        piece.currentPosition.y = Math.floor(index / puzzleConfig.pieceCount.x);
     });
     state.pieces = pieces;
-    updateDifficultyLevel();
 };
 
-const increaseDifficulty = () => {
-    currentDifficulty = (currentDifficulty + 1) % difficulties.length;
-    puzzleConfig.pieceCount = difficulties[currentDifficulty];
-    state.pieces.forEach((piece) => {
-        piece.elem.remove();
+const checkCompletion = () => {
+    const completed = state.pieces.every((piece) => {
+        const currentX = parseInt(piece.elem.style.left) / (puzzleConfig.size.width / puzzleConfig.pieceCount.x);
+        const currentY = parseInt(piece.elem.style.top) / (puzzleConfig.size.height / puzzleConfig.pieceCount.y);
+        return (
+            Math.abs(currentX - piece.currentPosition.x) < 1 &&
+            Math.abs(currentY - piece.currentPosition.y) < 1
+        );
     });
-    initBoard();
+
+    if (completed) {
+        // Mostrar mensaje de felicitaciones o lo que desees
+        alert('¡Felicitaciones! Has completado el rompecabezas.');
+    }
 };
 
 initBoard();
@@ -139,5 +147,3 @@ document.querySelector('#newGame').onclick = () => {
     });
     initBoard();
 };
-
-document.querySelector('#increaseDifficulty').onclick = increaseDifficulty;

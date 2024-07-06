@@ -59,7 +59,6 @@ function escogerPreguntaAleatoria() {
 
 function escogerPregunta(n) {
   pregunta = interprete_bp[n];
-  select_id("categoria").innerHTML = pregunta.categoria;
   select_id("pregunta").innerHTML = pregunta.pregunta;
   select_id("numero").innerHTML = n;
   let pc = preguntas_correctas;
