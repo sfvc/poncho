@@ -1,3 +1,5 @@
+// TODO: quedo hacr que se reinicie cuando le das al "ok" en el modal. Porque si no hay que darle 1 vez mas a alguna pregunta y alta paja che
+
 let preguntas_aleatorias = true;
 let mostrar_pantalla_juego_términado = true;
 let reiniciar_puntos_al_reiniciar_el_juego = true;
@@ -10,7 +12,7 @@ window.onload = function () {
 
 let pregunta;
 let posibles_respuestas;
-btn_correspondiente = [
+let btn_correspondiente = [
   select_id("btn1"),
   select_id("btn2"),
   select_id("btn3"),
@@ -34,21 +36,20 @@ function escogerPreguntaAleatoria() {
     if (n >= interprete_bp.length) {
       n = 0;
     }
-    if (npreguntas.length == interprete_bp.length) {
-      //Aquí es donde el juego se reinicia
+    if (npreguntas.length === 12) {
       if (mostrar_pantalla_juego_términado) {
         swal.fire({
           title: "Juego finalizado",
-          text:
-            "Puntuación: " + preguntas_correctas + "/" + (preguntas_hechas - 1),
+          text: "Puntuación: " + preguntas_correctas + "/" + npreguntas.length,
           icon: "success"
         });
       }
       if (reiniciar_puntos_al_reiniciar_el_juego) {
-        preguntas_correctas = 0
-        preguntas_hechas = 0
+        preguntas_correctas = 0;
+        preguntas_hechas = 0;
       }
       npreguntas = [];
+      return;
     }
   }
   npreguntas.push(n);
@@ -62,17 +63,13 @@ function escogerPregunta(n) {
   select_id("pregunta").innerHTML = pregunta.pregunta;
   select_id("numero").innerHTML = n;
   let pc = preguntas_correctas;
-  if (preguntas_hechas > 1) {
-    select_id("puntaje").innerHTML = pc + "/" + (preguntas_hechas - 1);
-  } else {
-    select_id("puntaje").innerHTML = "";
-  }
+  select_id("puntaje").innerHTML = pc + "/" + npreguntas.length;
 
   style("imagen").objectFit = pregunta.objectFit;
   desordenarRespuestas(pregunta);
   if (pregunta.imagen) {
     select_id("imagen").setAttribute("src", pregunta.imagen);
-    style("imagen").height = "200px";
+    style("imagen").height = "350px";
     style("imagen").width = "100%";
   } else {
     style("imagen").height = "0px";
@@ -88,7 +85,7 @@ function desordenarRespuestas(pregunta) {
     pregunta.respuesta,
     pregunta.incorrecta1,
     pregunta.incorrecta2,
-    pregunta.incorrecta3,
+    pregunta.incorrecta3
   ];
   posibles_respuestas.sort(() => Math.random() - 0.5);
 
@@ -122,8 +119,6 @@ function oprimir_btn(i) {
     suspender_botones = false;
   }, 3000);
 }
-
-// let p = prompt("numero")
 
 function reiniciar() {
   for (const btn of btn_correspondiente) {
