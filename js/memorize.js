@@ -1,14 +1,14 @@
 function gameStart() {
   // Acá anda agregando todas las imagenes de los logos, Agustin. Todo esta bindeado a la carpeta de "memorize". Estas señoras no me pasaron los logos a tiempo asi que te toca cambiarlas jsjs
   const cards = [
-    "1200px-Catedral_Basílica_Nuestra_Señora_del_Valle,_Catamarca.jpg", 
-    "fundacion.webp", 
-    "Jumeal-800x445.jpg", 
-    "plaza-25-de-mayo-catamarca-capital.webp", 
-    "plaza-vientos.jpg", 
-    "poncho.jpg", 
-    "poncho2024.webp", 
-    "Procesión-de-la-Virgen-del-Valle-Catamarca_-1.jpg"
+    "bse.png", 
+    "centrocard.png", 
+    "nacion.png", 
+    "galicia.png", 
+    "macro.png", 
+    "naranja.png", 
+    "santander.png", 
+    "sol.png"
   ];
   const cardList = cards.concat(cards);
 

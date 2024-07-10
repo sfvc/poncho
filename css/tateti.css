@@ -1,17 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 body {
     margin: 0;
     padding: 0;
-    background-color: #f3e0b5; /* Fondo beige claro */
+    background-color: white; /* Fondo beige claro */
     /* background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg"); */
-    color: #8b4513; /* Marrón oscuro para el texto */
     text-align: center;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 1em;
+    min-height: 99.98vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 h1 {
@@ -20,12 +18,8 @@ h1 {
     padding-bottom: 5px;
     font-size: 2.8em;
     font-weight: bold;
-    color: #8b4513; /* Marrón oscuro */
 }
 
-h2, h3 {
-    color: #8b4513; /* Marrón oscuro */
-}
 
 table {
     margin: 2% auto;
@@ -75,14 +69,22 @@ table {
     color: #8b4513; /* Marrón oscuro */
 }
 
+.reiniciar-conteiner{
+    width: auto;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #restart {
+    text-align: center;
     font-size: 3em;
-    width: 1em;
-    height: 0.9em;
     cursor: pointer;
-    margin: 1rem auto;
-    overflow: hidden;
     color: #8b4513; /* Marrón oscuro */
+    border: 1px solid lightblue;
+    padding: 10px 20px;
+    border-radius: 10px; /* Adjusted border-radius values */
 }
 
 .x {
@@ -113,6 +115,7 @@ table {
     overflow: auto; /* enable scroll if needed */
     background-color: black; /* fallback color */
     background-color: rgba(0, 0, 0, 0.6);
+    scrollbar-width: none;
 }
 
 /* modal content */
@@ -122,7 +125,7 @@ table {
     font-size: 2em;
     font-weight: bold;
     /* 16 % from the top and centered */
-    margin: 16% auto;
+    margin: 5% auto;
     padding: 20px;
     border: 2px solid black;
     border-radius: 10px;
