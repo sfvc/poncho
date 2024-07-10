@@ -11,8 +11,6 @@ html {
 
 html,
 body {
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -22,6 +20,11 @@ body {
   /* Background pattern from Subtle Patterns */
   font: 1.1rem 'Nunito Sans', cursive;
   color: #fff;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: auto;
+  height: 99.98vh;
 }
 
 /* common classes*/
@@ -44,7 +47,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  overflow: hidden;
+  
 }
 
 h1 {
