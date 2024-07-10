@@ -16,10 +16,8 @@ body {
 }
 
 body {
-  background: #fff url('../images/geometry-night.png');
   /* Background pattern from Subtle Patterns */
   font: 1.1rem 'Nunito Sans', cursive;
-  color: #fff;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

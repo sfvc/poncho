@@ -7,7 +7,7 @@
 
 body{
   width: auto;
-  height: 99.98vh;
+  height: 100vh;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
