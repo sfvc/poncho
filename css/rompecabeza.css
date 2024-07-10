@@ -5,14 +5,24 @@
   box-sizing: border-box;
 }
 
+body{
+  width: auto;
+  height: 99.98vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
 .actions {
   margin-top: 1em;
   margin-bottom: 1em;
   text-align: center;
+  height: 10vh;
 }
 
 .puzzle {
   position: relative;
+  height: 80vh;
 }
 
 .puzzleBackground {
