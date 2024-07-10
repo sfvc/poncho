@@ -20,7 +20,7 @@
         <img src="./images/logos/logo-sfvc-travel-1.webp" style="width: 15rem;" alt="Logo de Catamarca Capital">
     </div>
     <div class="container mx-auto p-4">
-        <div class=" flex space-x-28">
+        <div class="flex space-x-28">
             <div class="bg-white rounded-lg overflow-hidden shadow-md w-full">
                 <a href="./pages/memorize.html">
                     <img src="./images/logos/memorizeLogo.jpeg" alt="Memorize Logo" class="object-cover foto-card-index">
@@ -54,14 +54,53 @@
         </div>
     </div>
     
-
-
     <footer>
         <div class="navbar">
             <a href="#" class="inicio"><i class="fa fa-gamepad"></i> Juegos</a>
-            <a href="./test.html" class="info"><i class="fa fa-info"></i> Info</a>
+            <button id="playButton" class="info"><i class="fa fa-info"></i> Info</button>
         </div>
     </footer>
+
+    <!-- Video Player -->
+    <video id="myVideo" autoplay loop muted>
+        <source src="./4434150-hd_1080_1920_30fps.mp4" type="video/mp4">
+        Tu navegador no soporta el video HTML5.
+    </video>
+
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling when video is in fullscreen */
+        }
+
+        #myVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 1000; /* Ensure the video is behind other content */
+            display: none; /* Initially hidden */
+        }
+    </style>
+
+    <script>
+        document.getElementById('playButton').addEventListener('click', function() {
+            const video = document.getElementById('myVideo');
+            video.classList.add('fullscreen-video');
+            video.style.display = 'block';
+            video.play();
+            
+            // Agregar evento para ocultar el video al tocar la pantalla
+            video.addEventListener('click', function() {
+                video.pause();
+                video.style.display = 'none';
+                video.classList.remove('fullscreen-video');
+            });
+        });
+    </script>
 </body>
 
 </html>

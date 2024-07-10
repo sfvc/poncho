@@ -13,15 +13,18 @@ body {
     text-align: center;
     font-family: calibri;
     font-size: 120%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 99.98vh;
 }
 
 .contenedor {
-    width: 98vw;
-    height: 97vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
 }
 
 .encabezado {
