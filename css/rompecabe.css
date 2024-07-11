@@ -1,0 +1,129 @@
+:root{
+    --poncho-claro: #fff1d2;
+    --poncho-medio: #ca9e67;
+    --poncho-oscuro: #403508;
+    --marca-cele:#00b6dc;
+    --marca-celeclaro:#b6edf8;
+    --marca-celeoscuro:#016f85;
+    --marca-rosaclaro: #d68fb6;
+    --marca-rosa: #E7007F;
+    --marca-rosaoscuro: #7a0044;
+    --marca-amarilloclaro: #f7e079;
+    --marca-amarillo: #FFD51B;
+    --marca-amarillooscuro: #9e8514;
+    --marca-naranja: #f29434;
+    --marca-naranjaclaro: #f0c9a3;
+    --marca-naranjaoscuro: #8a4602;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+
+body {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #403608, #CB9E68);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 15vh;
+    width: 98vw;
+    padding: 10px;
+    background-color: transparent;
+}
+
+.redes{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+#controls button,
+#controls select {
+    margin: 5px;
+}
+
+#app {
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: relative; */
+    padding: 0;
+}
+
+canvas {
+    display: block;
+    position: relative;
+    touch-action: none;
+}
+
+select {
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+select option {
+    padding: 5px 10px;
+    font-size: 18px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, .5);
+    color: #000;
+    font-size: 20px;
+    transition: background-color ease-in .3s;
+    background-color: ;
+}
+
+button:hover {
+    transition: background-color ease-out .3s;
+}
+
+
+.info {
+    margin: 0 auto;
+    color: white;
+    text-decoration: none;
+    font-size: xx-large;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 1px solid var(--marca-rosaclaro);
+    box-shadow: 0px 0px 5px 0px var(--marca-rosa);
+    background-image: linear-gradient(to left top, var(--marca-rosaclaro), var(--marca-rosa));
+  }
+  
+  .info:active {
+    position: relative;
+    top: 1px;
+  }
