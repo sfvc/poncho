@@ -1,3 +1,24 @@
+@import url(font.css);
+
+:root{
+  --poncho-claro: #fff1d2;
+  --poncho-medio: #ca9e67;
+  --poncho-oscuro: #403508;
+  --marca-cele:#00b6dc;
+  --marca-celeclaro:#b6edf8;
+  --marca-celeoscuro:#016f85;
+  --marca-rosaclaro: #d68fb6;
+  --marca-rosa: #E7007F;
+  --marca-rosaoscuro: #7a0044;
+  --marca-amarilloclaro: #f7e079;
+  --marca-amarillo: #FFD51B;
+  --marca-amarillooscuro: #9e8514;
+  --marca-naranja: #f29434;
+  --marca-naranjaclaro: #f0c9a3;
+  --marca-naranjaoscuro: #8a4602;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +28,16 @@ body{
   justify-content: space-between;
   flex-direction: column;
   min-height: 99.98vh;
+  background: linear-gradient(180deg, #403608, #CB9E68);
+  
 }
+
+/*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=403608&c2=cb9e68&gt=l&gd=dtt
+*/
+/* background: #403608;
+background: linear-gradient(180deg, #403608, #CB9E68); */
 .card-link {
     display: block;
     text-decoration: none;
@@ -44,9 +74,15 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #001C2B;
-    height: 10vh;
+    height: 15vh;
     padding: 10px;
+    background-color: transparent;
+  }
+
+  .nav-bg{
+    background: #403608;
+    background: linear-gradient(180deg, #403608, #CB9E68);
+    height: auto;
   }
   
   a {
@@ -70,18 +106,21 @@ body{
   }
   
   .info {
-    width: 75vw;
-    height: 75%;
     margin: 0 auto;
     color: white;
     text-decoration: none;
     font-size: xx-large;
     padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #CA9E67;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 15px;
+    border: 1px solid var(--marca-rosaclaro);
+    box-shadow: 0px 0px 5px 0px var(--marca-rosa);
+    background-image: linear-gradient(to left top, var(--marca-rosaclaro), var(--marca-rosa));
   }
   
+  .info:active {
+    position: relative;
+    top: 1px;
+  }
   .navbar h1 {
     color: white;
     font-size: 24px;
@@ -98,3 +137,52 @@ body{
     align-items: center;
     gap: 10px;
   }
+
+  .card-link {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    width: 90%;
+    padding: 10px 25px;
+    font-weight: 500;
+    font-size: 0.875rem; /* equivalent to 14px */
+    border-radius: 0.375rem; /* equivalent to 6px */
+    text-align: center;
+    margin-bottom: 10px; /* equivalent to 2.5 in the original */
+    outline: none;
+    transition: background-image 0.3s, box-shadow 0.3s;
+}
+
+.card-link-naranja{
+  background-image: linear-gradient(to bottom right, var(--marca-naranja), var(--marca-naranjaoscuro));
+  border: 1px solid var(--marca-naranjaclaro);
+  box-shadow: 0px 0px 5px 0px var(--marca-naranjaclaro);
+}
+
+
+.card-link-azul{
+  background-image: linear-gradient(to bottom right, var(--marca-cele), var(--marca-celeoscuro));
+  border: 1px solid var(--marca-celeclaro);
+  box-shadow: 0px 0px 5px 0px var(--marca-celeclaro);
+}
+
+.card-link-amarillo{
+  background-image: linear-gradient(to bottom right, var(--marca-amarillo), var(--marca-amarillooscuro));
+  border: 1px solid var(--marca-amarilloclaro);
+  box-shadow: 0px 0px 5px 0px var(--marca-amarilloclaro);
+}
+
+.jugar-btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container-cards-juego{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+}

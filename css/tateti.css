@@ -1,7 +1,24 @@
+:root{
+    --poncho-claro: #fff1d2;
+    --poncho-medio: #ca9e67;
+    --poncho-oscuro: #403508;
+    --marca-cele:#00b6dc;
+    --marca-celeclaro:#b6edf8;
+    --marca-celeoscuro:#016f85;
+    --marca-rosaclaro: #d68fb6;
+    --marca-rosa: #E7007F;
+    --marca-rosaoscuro: #7a0044;
+    --marca-amarilloclaro: #f7e079;
+    --marca-amarillo: #FFD51B;
+    --marca-amarillooscuro: #9e8514;
+    --marca-naranja: #f29434;
+    --marca-naranjaclaro: #f0c9a3;
+    --marca-naranjaoscuro: #8a4602;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
 body {
     margin: 0;
     padding: 0;
-    background-color: white; /* Fondo beige claro */
     /* background-image: url("https://janschreiber.github.io/img2/black-chalk.jpg"); */
     text-align: center;
     font-family: 'Nunito Sans', sans-serif;
@@ -10,6 +27,8 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    background: linear-gradient(180deg, #403608, #CB9E68);
+    color: white;
 }
 
 h1 {
@@ -31,12 +50,12 @@ table {
     font-size: 120px;
     margin: 1% auto;
     border-collapse: collapse;
-    background-color: #f9dcb2; /* Fondo beige más claro para la tabla */
-    border: 4px solid #8b4513; /* Borde marrón oscuro */
+    background-color: rgb(222, 247, 255); /* Fondo beige más claro para la tabla */
+    border: 4px solid var(--marca-cele); /* Borde marrón oscuro */
 }
 
 .td_game {
-    border: 4px solid #8b4513; /* Borde marrón oscuro */
+    border: 4px solid var(--marca-cele); /* Borde marrón oscuro */
     width: 90px;
     height: 90px;
     padding: 0;
@@ -49,24 +68,19 @@ table {
     height: 90px;
     line-height: 90px;
     display: block;
-    overflow: hidden;
     cursor: pointer;
-    background-color: #f3e0b5; /* Fondo beige claro */
 }
 
 .td_list {
     text-align: center;
     font-size: 1.3em;
     font-weight: bold;
-    color: #8b4513; /* Marrón oscuro */
 }
 
 .th_list {
     font-size: 1.3em;
     font-weight: bold;
     text-align: center;
-    text-decoration: underline;
-    color: #8b4513; /* Marrón oscuro */
 }
 
 .reiniciar-conteiner{
@@ -81,7 +95,7 @@ table {
     text-align: center;
     font-size: 3em;
     cursor: pointer;
-    color: #8b4513; /* Marrón oscuro */
+    color: var(--rosa); /* Marrón oscuro */
     border: 1px solid lightblue;
     padding: 10px 20px;
     border-radius: 10px; /* Adjusted border-radius values */
@@ -95,6 +109,7 @@ table {
     cursor: default;
 }
 
+
 .o {
     color: rgb(0, 4, 255);
     position: relative;
@@ -103,7 +118,7 @@ table {
     cursor: default;
 }
 
-/* modal background */
+/* background */
 .modal {
     display: none;
     position: fixed;
@@ -112,22 +127,20 @@ table {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* enable scroll if needed */
-    background-color: black; /* fallback color */
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #2e2a2dab; /* fallback color */
     scrollbar-width: none;
 }
 
 /* modal content */
 .modal-content {
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(222, 247, 255); /* Fondo beige más claro para la tabla */
     color: rgb(32, 32, 32);
     font-size: 2em;
     font-weight: bold;
     /* 16 % from the top and centered */
-    margin: 5% auto;
+    margin: 20% auto;
     padding: 20px;
-    border: 2px solid black;
+    border: 1px solid var(--marca-cele);
     border-radius: 10px;
     width: 380px;
     max-width: 80%;
@@ -155,15 +168,15 @@ table {
 }
 
 .win-color {
-    background-color: rgb(240, 240, 240);
+    background-color: var(--rosa-claro);
 }
 
 .navbar {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    background-color: #001C2B;
-    padding: 10px 20px;
+    height: 10vh;
+    padding: 10px;
 }
 
 a {
@@ -194,16 +207,40 @@ a {
 
 button#okBtn {
     margin-top: 1em;
-    background-color: #4CAF50; /* Color de fondo */
+    background-color: #e7007f; /* Color de fondo */
     color: white; /* Color del texto */
     padding: 10px 20px; /* Espaciado interno */
-    border: none; /* Borde */
+    border: 1px solid #e7007f; /* Borde */
     cursor: pointer; /* Cursor */
     border-radius: 5px; /* Bordes redondeados */
     font-size: 16px; /* Tamaño de fuente */
     transition: background-color 0.3s ease; /* Transición al hacer hover */
+    width: 75%;
 }
 
-button#okBtn:hover {
-    background-color: #45a049; /* Color de fondo al hacer hover */
+.winAnnounce{
+    background-color: white;
 }
+
+.redes{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .info {
+    margin: 0 auto;
+    color: white;
+    text-decoration: none;
+    font-size: xx-large;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 1px solid var(--marca-rosaclaro);
+    box-shadow: 0px 0px 5px 0px var(--marca-rosa);
+    background-image: linear-gradient(to left top, var(--marca-rosaclaro), var(--marca-rosa));
+  }
+  
+  .info:active {
+    position: relative;
+    top: 1px;
+  }

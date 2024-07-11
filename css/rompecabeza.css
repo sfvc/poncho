@@ -11,6 +11,7 @@ body{
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  background: linear-gradient(180deg, #403608, #CB9E68);
 }
 
 .actions {
@@ -65,7 +66,6 @@ body{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #001C2B;
   padding: 10px 20px;
 }
 
@@ -90,22 +90,18 @@ a {
 }
 
 .info {
+  margin: 0 auto;
   color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: xx-large;
   padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #CA9E67;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 15px;
+  border: 1px solid var(--marca-rosaclaro);
+  box-shadow: 0px 0px 5px 0px var(--marca-rosa);
+  background-image: linear-gradient(to left top, var(--marca-rosaclaro), var(--marca-rosa));
 }
 
-.info:hover {
-  background-color: #0c65e9;
-  transform: scale(1.1);
-}
-
-.navbar h1 {
-  color: white;
-  font-size: 24px;
-  margin: 0;
+.info:active {
+  position: relative;
+  top: 1px;
 }
