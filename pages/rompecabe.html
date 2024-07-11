@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Rompecabezas</title>
+    <link rel="stylesheet" href="../css/rompecabe.css">
+</head>
+<body>
+    <div class="navbar arriba">
+        <img src="../images/logos/logo_CATACAPI.png" style="width: 20rem;" alt="Logo de Catamarca Capital">
+        <img src="../images/logos/logo-sfvc-travel-1.webp" style="width: 15rem;" alt="Logo de Catamarca Capital">
+    </div>
+    <div id="controls">
+        <button name="shufflepuzzle" style="background-color: green; border-radius: 10px; border: 1px solid lightgreen; box-shadow: 0px 0xp 10px 0px lightgreen;  color: white;">Jugar</button>
+        <button name="resetpuzzle" style="background-color: var(--marca-rosa); border-radius: 10px; color: white;">Reiniciar</button>
+        <select name="pickimage">
+            <option value="../images/rompecabezas/Dique-El-Jumeal-SFVC-Turismo-Catamarca-14.webp" selected="selected">Dique El Jumeal</option>
+            <option value="../images/rompecabezas/La-Alameda-SFVC-Paseo-General-Navarro-Catamarca-LD-8.webp">Plaza La Alameda</option>
+            <option value="../images/rompecabezas/La-Gruta-SFVC-virgen-del-valle-Catamarca-6.webp">La Gruta</option>
+        </select>
+        <select name="boardconfig">
+            <option value="3x2" selected="selected">3 x 2</option>
+            <option value="2x3">2 x 3</option>
+            <option value="3x3">3 x 3</option>
+            <option value="4x3">4 x 3</option>
+            <option value="3x4">3 x 4</option>
+            <option value="5x7">5 x 7</option>
+            <option value="7x5">7 x 5</option>
+        </select>
+    </div>
+    <div id="app"></div>
+    <footer class="navbar-bg">
+        <div class="navbar">
+            <div class="redes">
+                <img src="../facebook.svg" alt="">
+                <img src="../instagram.svg" alt="">
+                <h1>
+                    sfvcturismo   
+                </h1>
+            </div>
+            <div class="redes">
+                <h1>www.sfvc.travel</h1>
+            </div>
+            <div class="redes">
+                <a href="../index.html" class="info"><i class="fa fa-games"></i> Juegos</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script src="../js/rompecabe.js"></script>
+<script src="../js/tween.umd.js"></script>
+</html>
