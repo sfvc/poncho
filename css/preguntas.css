@@ -81,7 +81,9 @@ body {
     font-size: 1.3em;
     border: 2px solid var(--marca-celeclaro);
 }
-
+h1 {
+    font-weight: 300;
+  }
 .btn:hover {
     background-color: lightblue;
     transform: scale(1.05);

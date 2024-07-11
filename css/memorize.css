@@ -48,7 +48,7 @@ body {
 }
 
 /* common classes*/
-.disabled {
+.disabled { 
   pointer-events: none;
 }
 
