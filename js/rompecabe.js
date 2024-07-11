@@ -92,7 +92,7 @@ canvas.addEventListener('pointerup', (e) => {
             .onComplete(() => {
                 localPiece.z = 0
                 if (board.check()) {
-                    alert('You have successfully completed this puzzle!')
+                    alert('Rompecabeza completado')
                     board.pieces = []
                 }
             })
