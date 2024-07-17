@@ -1,5 +1,4 @@
 function gameStart() {
-  // Acá anda agregando todas las imagenes de los logos, Agustin. Todo esta bindeado a la carpeta de "memorize". Estas señoras no me pasaron los logos a tiempo asi que te toca cambiarlas jsjs
   const cards = [
     "bse.png", 
     "centrocard.png", 
@@ -12,10 +11,8 @@ function gameStart() {
   ];
   const cardList = cards.concat(cards);
 
-  // Shuffle list of cards
   shuffle(cardList);
 
-  // Place cardList in deck
   const deck = document.querySelector('.deck');
   const temp_deck = document.createDocumentFragment();
 
@@ -39,11 +36,9 @@ function gameStart() {
   }
   deck.appendChild(temp_deck);
 
-  // Show all cards for 5 seconds
   showAllCards();
 }
 
-// @description Shuffle function from Fisher-Yates (aka Knuth-shuffle).
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue, randomIndex;
@@ -59,13 +54,9 @@ function shuffle(array) {
   return array;
 }
 
-// @description Game loads on window loads
 window.onload = gameStart;
 
-// @description Load logic after creating cards
 setTimeout(cardLogic, 2000);
-
-// Acá podes cambiar el tiempo de "visibilidad" de las cards, Agustin. Tenes que cambiar el de card logic (arriba) y el de showAllCards (abajo)
 
 function showAllCards() {
   const allCards = document.querySelectorAll('.card');
@@ -84,13 +75,7 @@ function showAllCards() {
   }, 2000);
 }
 
-/*=================
-\ Card flip method \
-=================*/
-
-// @description Temporary card' list for matching
 let openCards = [];
-// @description To avoid the opening of third card
 let cardLock = false;
 
 function cardLogic() {
@@ -98,24 +83,19 @@ function cardLogic() {
 
   allCards.forEach(card => card.addEventListener('click', event => {
     event.preventDefault();
-    // Initialize the timer on first click
     if (!timerState) {
       timeCounter();
       timerState = true;
     }
-    // Add cards into temporary stack
     openCards.push(card);
     if (cardLock) {
       return true;
     }
-    // Disable event trigger on cards having 'open', 'show' and 'match' classes
     card.classList.add('open', 'show', 'disabled');
-    card.querySelector('.back').style.display = 'none'; // Hide the back
-    card.querySelector('.front').style.display = 'block'; // Show the front
+    card.querySelector('.back').style.display = 'none';
+    card.querySelector('.front').style.display = 'block';
     if (openCards.length == 2) {
-      // Check the card similarity
       check();
-      // Add a move count on opening card pair
       movesCounter();
     }
   }));
@@ -125,7 +105,6 @@ function cardLogic() {
     checking ? matchCards() : unMatchCards();
   };
 
-  // When cards match
   function matchCards() {
     openCards.forEach(openCard => {
       openCard.classList.add('open', 'show', 'match', 'disabled');
@@ -133,37 +112,31 @@ function cardLogic() {
     openCards = [];
   }
 
-  // When cards do not match
   function unMatchCards() {
     openCards.forEach(openCard => {
       openCard.classList.add('wrong');
     });
 
-    // Lock wrong cards except first two until flipped back
     cardLock = true;
     setTimeout(() => {
       openCards.forEach(openCard => {
         openCard.classList.remove('open', 'show', 'wrong', 'disabled');
-        openCard.querySelector('.back').style.display = 'block'; // Show the back
-        openCard.querySelector('.front').style.display = 'none'; // Hide the front
+        openCard.querySelector('.back').style.display = 'block';
+        openCard.querySelector('.front').style.display = 'none';
       });
 
-      // Unlock card clicking method
       cardLock = false;
       openCards = [];
     }, 1000);
   }
 
-  // Moves Counter
   const moves = document.querySelector('.moves');
   let allMoves = 0;
 
   function movesCounter() {
     allMoves++;
-    // Update moves display
     allMoves == 1 ? moves.innerText = `${allMoves} Movimiento` : moves.innerText = `${allMoves} Movimientos`;
-    
-    // Check if move limit reached
+
     if (allMoves >= moveLimit) {
       loseGame("Has superado el límite de movimientos permitidos.");
     }
@@ -171,7 +144,6 @@ function cardLogic() {
     checkWin();
   }
 
-  // Stars rating
   const stars = document.querySelector('.stars');
   const popupMsg = document.querySelector(".popupMsg");
   const popupStars = document.querySelector(".final_stars");
@@ -217,9 +189,6 @@ function cardLogic() {
     }
   }
 
-  // TODO: Hacer que puedas jugar directamente cuando fallas o se acaba el tiempo, Agustin (en verdad esto me quedaba a mi pero pasaron cositas jsjs. No es algo super importante, pero si podes pintarla para que no quede tan choto, mandale cumbia)
-
-  // Timer
   const timer = document.querySelector('.timer');
   let minutes = 0;
   let seconds = 0;
@@ -237,7 +206,6 @@ function cardLogic() {
       }
       timer.innerText = timeFormat(seconds, minutes);
   
-      // Check if time limit reached
       if (minutes >= timeLimitMinutes) {
         loseGame("Has alcanzado el límite de tiempo permitido.");
       }
@@ -246,12 +214,15 @@ function cardLogic() {
 
   function loseGame(message) {
     stopTimer();
-    // Display losing message or handle game over logic
-    alert(message);
-    // Optionally, reset the game here or prompt user to restart
+    swal.fire({
+      title: "¡Juego perdido!",
+      text: message,
+      icon: "error"
+    }).then(() => {
+      location.reload();
+    });
   }
-  
-  // Function to stop the timer
+
   function stopTimer() {
     clearInterval(timerSettings);
     timerState = false;
@@ -273,10 +244,17 @@ function cardLogic() {
   const restart = document.querySelector('.restart');
 
   restart.addEventListener('click', () => {
-    const restartBox = confirm("¿Estás seguro de reiniciar?");
-    if (restartBox) {
-      document.location.reload();
-    }
+    swal.fire({
+      title: "¿Estás seguro de reiniciar?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, reiniciar",
+      cancelButtonText: "No, cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        location.reload();
+      }
+    });
   });
 
   function winPopup() {
@@ -286,7 +264,7 @@ function cardLogic() {
     const popupBox = document.querySelector(".overlay");
     popupBox.classList.add("show");
     document.querySelector(".replay").addEventListener("click", () => {
-      window.location.reload(true);
+      location.reload();
     });
   }
 }

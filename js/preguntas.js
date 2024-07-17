@@ -1,12 +1,120 @@
-// TODO: quedo hacr que se reinicie cuando le das al "ok" en el modal. Porque si no hay que darle 1 vez mas a alguna pregunta y alta paja che
-
 let preguntas_aleatorias = true;
 let mostrar_pantalla_juego_términado = true;
 let reiniciar_puntos_al_reiniciar_el_juego = true;
 
+let base_preguntas = [
+  {
+    "pregunta": "¿Cómo se llama la plaza principal de la ciudad de Catamarca?",
+    "respuesta": "Plaza 25 de Mayo",
+    "incorrecta1": "Independencia",
+    "incorrecta2": "Plaza San Martin",
+    "incorrecta3": "Plaza de la Constitución",
+    "imagen": "../images/preguntados/plaza-25-de-mayo-catamarca-capital.webp",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "En SFVC contamos con un espejo de agua rodeado de montaña, su nombre es?",
+    "respuesta": "Dique El Jumeal",
+    "incorrecta1": "Laguna Azul",
+    "incorrecta2": "Embalse Las Pirquitas",
+    "incorrecta3": "Río del Valle",
+    "imagen": "../images/preguntados/Jumeal-800x445.jpg",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "¿Cuál es la fiesta más grande del País que se celebra en el invierno?",
+    "respuesta": "Fiesta Nacional e Internacional del Poncho",
+    "incorrecta1": "Fiesta Nacional de las Artesanías",
+    "incorrecta2": "Fiesta Nacional de la Nieve",
+    "incorrecta3": "Fiesta Nacional del Folklore",
+    "imagen": "../images/preguntados/poncho.jpg",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "¿En qué fecha se celebra la Fundación de la Ciudad de SFVC?",
+    "respuesta": "5 de Julio",
+    "incorrecta1": "9 de Julio",
+    "incorrecta2": "25 de Agosto",
+    "incorrecta3": "12 de Septiembre",
+    "imagen": "../images/preguntados/fundacion.webp",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "¿Qué número de edición es la de este año 2024 de la Fiesta Nacional e Internacional del Poncho?",
+    "respuesta": "53 años",
+    "incorrecta1": "50 años",
+    "incorrecta2": "56 años",
+    "incorrecta3": "55 años",
+    "imagen": "../images/preguntados/poncho2024.webp",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "¿Cómo se llama el espacio natural y recreativo que se encuentra en las lomadas de El Jumeal, que se ha convertido en el mayor atractivo turístico de la ciudad?",
+    "respuesta": "Parque de Los Vientos",
+    "incorrecta1": "Parque de los Niños",
+    "incorrecta2": "Parque Adán Quiroga",
+    "incorrecta3": "Parque El Jumeal",
+    "imagen": "../images/preguntados/plaza-vientos.jpg",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "¿Qué Sitio Arqueológico se encuentra a la vera de la Ruta Provincial Nº 4 camino a El Rodeo?",
+    "respuesta": "Pueblo Perdido de la Quebrada",
+    "incorrecta1": "Centro Cultural Arqueológico",
+    "incorrecta2": "Museo Arqueológico de La Aguada",
+    "incorrecta3": "Sitio El Shincal",
+    "imagen": "../images/preguntados/quebrada.jpg",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "Si inicio un recorrido en auto desde la Plaza 25 de Mayo, ¿aproximadamente a cuántos minutos estoy en el Dique El Jumeal?",
+    "respuesta": "10 minutos",
+    "incorrecta1": "60 minutos",
+    "incorrecta2": "25 minutos",
+    "incorrecta3": "45 minutos",
+    "imagen": "../images/preguntados/Jumeal-800x445.jpg",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "¿Quién fue declarada en el año 1974 Patrona Nacional del Turismo?",
+    "respuesta": "Virgen del Valle",
+    "incorrecta1": "Virgen de Luján",
+    "incorrecta2": "Virgen de Itatí",
+    "incorrecta3": "Virgen de San Nicolás",
+    "imagen": "../images/preguntados/Virgen-del-Valle.jpg",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "En la Capital, ¿qué bodega puedo visitar?",
+    "respuesta": "Mi Chango",
+    "incorrecta1": "Perro Guardián",
+    "incorrecta2": "Don Diego",
+    "incorrecta3": "Bodega Catamarca",
+    "imagen": "../images/preguntados/vinedo.jpg",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "Esta imagen del campanario, ¿a qué edificio pertenece?",
+    "respuesta": "Catedral Basílica Nuestra Señora del Valle",
+    "incorrecta1": "Seminario Diocesano Menor",
+    "incorrecta2": "Convento de San Francisco",
+    "incorrecta3": "Iglesia de San Francisco",
+    "imagen": "../images/preguntados/1200px-Catedral_Basílica_Nuestra_Señora_del_Valle,_Catamarca.jpg",
+    "objectFit": "cover"
+  },
+  {
+    "pregunta": "En Catamarca se realizan dos procesiones en honor a la Virgen del Valle. ¿Durante qué época del año?",
+    "respuesta": "Abril - Diciembre",
+    "incorrecta1": "Diciembre - Mayo",
+    "incorrecta2": "Abril - Noviembre",
+    "incorrecta3": "Mayo - Octubre",
+    "imagen": "../images/preguntados/Procesión-de-la-Virgen-del-Valle-Catamarca_-1.jpg",
+    "objectFit": "cover"
+  }
+];
+
 window.onload = function () {
-  base_preguntas = readText("base-preguntas.json");
-  interprete_bp = JSON.parse(base_preguntas);
+  interprete_bp = base_preguntas;
   escogerPreguntaAleatoria();
 };
 
@@ -42,6 +150,8 @@ function escogerPreguntaAleatoria() {
           title: "Juego finalizado",
           text: "Puntuación: " + preguntas_correctas + "/" + npreguntas.length,
           icon: "success"
+        }).then(() => {
+          location.reload();
         });
       }
       if (reiniciar_puntos_al_reiniciar_el_juego) {
@@ -133,15 +243,4 @@ function select_id(id) {
 
 function style(id) {
   return select_id(id).style;
-}
-
-function readText(ruta_local) {
-  var texto = null;
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", ruta_local, false);
-  xmlhttp.send();
-  if (xmlhttp.status == 200) {
-    texto = xmlhttp.responseText;
-  }
-  return texto;
 }

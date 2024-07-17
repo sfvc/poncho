@@ -1,25 +1,3 @@
-/**
- * Simple Jigsaw Puzzle.
- *
- * Another simple implementation of jigsaw puzzle. 
- * I tried to make it as simply and as fast as possible, 
- * so the resulting code is absolutely not optimized.
- * The pictures used are not mine, I found them 
- * on the Internet (God bless the Internet!).
- *
- * I had to add the word 'game' to this description, 
- * because people like to search for that word.
- *
- * - added picture selection;
- * - added board configuration selection;
- * - changed RADIUS according to the size of the board;
- * - added window resize event handler;
- * - made the puzzle respond to touch events (thanks to aminovmunir@hahayka for spotting the issue);
- *
- * @version 0.1.5
- * @author Denis Khakimov <denisdude@gmail.com>
- */ 
-
 const FPS = 30
 const pickimage = document.querySelector('select[name=pickimage]')
 let IMAGE = pickimage.value
@@ -38,7 +16,6 @@ const canvas = document.createElement('canvas')
 app.appendChild(canvas)
 const ctx = canvas.getContext('2d')
 
-// UI -- begin
 let isMouseInside = false
 let isPieceMoving = false
 let mousePos = { x : 0, y : 0 }
@@ -60,7 +37,7 @@ canvas.addEventListener('pointermove', (e) => {
     if (e.pointerType == 'touch' && isPieceMoving && piece) {
         piece.x += e.movementX
         piece.y += e.movementY        
-    } else if (isPieceMoving && piece) { // e.pointerType == 'mouse'
+    } else if (isPieceMoving && piece) {
         piece.x += e.offsetX - mousePos.x
         piece.y += e.offsetY - mousePos.y
     }
@@ -77,7 +54,6 @@ canvas.addEventListener('pointerdown', (e) => {
 })
 canvas.addEventListener('pointerup', (e) => {
     isPieceMoving = false
-    // is the piece near its place?
     if (piece && piece.isNearToPlace()) {
         let localPiece = piece
         let piecePos = { x : localPiece.x, y : localPiece.y }
@@ -92,7 +68,11 @@ canvas.addEventListener('pointerup', (e) => {
             .onComplete(() => {
                 localPiece.z = 0
                 if (board.check()) {
-                    alert('Rompecabeza completado')
+                    swal.fire({
+                        title: "¡Felicitaciones!",
+                        text: "Rompecabeza completado",
+                        icon: "success",
+                    });
                     board.pieces = []
                 }
             })
@@ -130,9 +110,8 @@ resetpuzzle.addEventListener('click', (e) => {
 
 const shufflepuzzle = document.querySelector('button[name=shufflepuzzle]')
 shufflepuzzle.addEventListener('click', (e) => {
-    // const localPadding = 40;
     const localPadding = 300
-    const localTop = Math.max(board.image.height + 50, canvas.height / 2); // Ajustar esto según la pantalla
+    const localTop = Math.max(board.image.height + 50, canvas.height / 2);
     const localBottom = canvas.height - localPadding;
     const localLeft = 0;
     const localRight = canvas.width - localPadding;
@@ -167,8 +146,6 @@ shufflepuzzle.addEventListener('click', (e) => {
     }
 });
 
-// UI -- end
-
 let deltaTime = 0
 let fpsDeltaTime = 0
 let fpsDeltaLimit = 1000 / FPS
@@ -187,7 +164,6 @@ const render = (time) => {
     requestAnimationFrame(render)
 }
 
-// init -- begin
 const reset = () => {
     image = new Image()
     image.src = IMAGE
@@ -217,15 +193,12 @@ const init = (event) => {
     render(0)
 }
 document.addEventListener('DOMContentLoaded', init)
-// init -- end
 
-// window resize -- begin
 const resize = (event) => {
     canvas.width = app.clientWidth
     canvas.height = app.clientHeight
 }
 
-// delay processing of window resize
 let resizeTimeout = null
 window.addEventListener('resize', (e) => {
     clearTimeout(resizeTimeout)
@@ -233,10 +206,6 @@ window.addEventListener('resize', (e) => {
         resize(e)
     }, 100)
 })
-// window resize -- end
-
-// classes -- begin
-//
 class Piece {
     constructor(bx, by, width, height) {
         this.x = 0
@@ -383,9 +352,7 @@ class Board {
     mask(x, y, radius) {
         return (px, py) => {
             let m = new Path2D()
-
             m.moveTo(px + this.x + x * this.pw, py + this.y + y * this.ph)
-            // top
             if (y == 0) {
                 m.lineTo(px + this.x + (x + 1) * this.pw, py + this.y + y * this.ph)
             } else {
@@ -393,7 +360,6 @@ class Board {
                 m.arc(px + this.x + (x + .5) * this.pw, py + this.y + y * this.ph, radius, Math.PI, 0, true)
                 m.lineTo(px + this.x + (x + 1) * this.pw, py + this.y + y * this.ph)
             }
-            // right
             if (x == this.c - 1) {
                 m.lineTo(px + this.x + (x + 1) * this.pw, py + this.y + (y + 1) * this.ph)
             } else {
@@ -401,7 +367,6 @@ class Board {
                 m.arc(px + this.x + (x + 1) * this.pw, py + this.y + (y + .5) * this.ph, radius, -Math.PI/2, Math.PI/2, false)
                 m.lineTo(px + this.x + (x + 1) * this.pw, py + this.y + (y + 1) * this.ph)
             }
-            // bottom
             if (y == this.r - 1) {
                 m.lineTo(px + this.x + x * this.pw, py + this.y + (y + 1) * this.ph)
             } else {
@@ -409,7 +374,6 @@ class Board {
                 m.arc(px + this.x + (x + .5) * this.pw, py + this.y + (y + 1) * this.ph, radius, 0, Math.PI, false)
                 m.lineTo(px + this.x + x * this.pw, py + this.y + (y + 1) * this.ph)
             }
-            // left
             if (x == 0) {
                 m.lineTo(px + this.x + x * this.pw, py + this.y + y * this.ph)
             } else {
@@ -422,4 +386,3 @@ class Board {
         }
     }
 }
-// classes -- end

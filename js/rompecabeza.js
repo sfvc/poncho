@@ -1,7 +1,3 @@
-// TODO: funca pero a la vez no el rompe cabezas. Lo mejor va a ser que lo veas en la tele y ahi pruebes. Agustin. Porque supuestmente ya quedo configurado el touch y todo, pero las cards todavia hacen lo que le sale del orto
-
-
-// Acá podes cambiar el tamaño del rompecabezas, y tambien las fichas
 const puzzleConfig = {
     size: { width: 640, height: 480 },
     pieceCount: { x: 3, y: 2 }
@@ -90,7 +86,6 @@ const imagenes = [
     'Dique-El-Jumeal-SFVC-Turismo-Catamarca-14.webp',
     'La-Alameda-SFVC-Paseo-General-Navarro-Catamarca-LD-8.webp',
     'La-Gruta-SFVC-virgen-del-valle-Catamarca-6.webp'
-    // Anda agregando acá las nuevas imagenes que te pasen, Agustin. Mandale el nombre y listo, ya queda vinculado todo a la ruta de "rompecabezas"
 ];
 
 const initBoard = () => {
